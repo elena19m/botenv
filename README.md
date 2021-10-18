@@ -30,21 +30,21 @@ vagrant up
 ```bash
 vagrant ssh cc
 vagrant@cc:~$ cd botenv
-vagrant@cc:~$ sudo python3 cc_test.py
+vagrant@cc:~$ sudo python3 cc_example.py
 ```
 
-**Terminal 2: **login to loader machine and start the loader server
+**Terminal 2: ** login to loader machine and start the loader server
 ```bash
 vagrant ssh loader
 vagrant@loader:~$ cd botenv
-vagrant@loader:~$ sudo python3 loader_test.py
+vagrant@loader:~$ sudo python3 loader_example.py
 ```
 
-**Terminal 3: **login to to11 machine and start a bot
+**Terminal 3: ** login to to11 machine and start a bot
 ```bash
 vagrant ssh to11
 vagrant@to11:~$ cd botenv
-vagrant@to11:~$ sudo python3 bot1_test.py
+vagrant@to11:~$ sudo python3 bot1_example.py
 ```
 
 **Terminal 4**
