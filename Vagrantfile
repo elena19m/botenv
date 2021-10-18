@@ -3,8 +3,8 @@ Vagrant.configure(2) do |config|
   # Starts Juniper router
   (1..1).each do |i|
     config.vm.define "r#{i}" do |r|
-      config.vm.box = "juniper/ffp-12.1X47-D15.4-packetmode"
-      config.vm.provider "virtualbox" do |vb|
+      r.vm.box = "juniper/ffp-12.1X47-D15.4-packetmode"
+      r.vm.provider "virtualbox" do |vb|
         vb.memory = 1024
         vb.cpus = 4
         vb.gui = false
@@ -24,9 +24,9 @@ Vagrant.configure(2) do |config|
   (1..1).each do |i|
     (1..6).each do |j|
       config.vm.define "to#{i}#{j}" do |tobj|
-        config.vm.box = "ubuntu/focal64"
-        config.vm.synced_folder ".", "/home/vagrant/botenv"
-        config.vm.provider "virtualbox" do |vb|
+        tobj.vm.box = "ubuntu/focal64"
+        tobj.vm.synced_folder ".", "/home/vagrant/botenv"
+        tobj.vm.provider "virtualbox" do |vb|
           vb.memory = 512
           vb.cpus = 2
           vb.gui = false
@@ -59,9 +59,9 @@ Vagrant.configure(2) do |config|
    (1..1).each do |i|
      (7..7).each do |j|
        config.vm.define "to#{i}#{j}" do |tobj|
-         config.vm.box = "elkinaguas/tiny-object-20"
-         config.vm.synced_folder ".", "/home/vagrant/botenv"
-         config.vm.provider "virtualbox" do |vb|
+         tobj.vm.box = "elkinaguas/tiny-object-20"
+         tobj.vm.synced_folder ".", "/home/vagrant/botenv"
+         tobj.vm.provider "virtualbox" do |vb|
            vb.memory = 512
            vb.cpus = 2
            vb.gui = false
@@ -89,36 +89,13 @@ Vagrant.configure(2) do |config|
      end
    end
 
-  # Starts machine to analyze data (useful for experiments / won't be added in the open-source project)
-  # (1..1).each do |i|
-  #   config.vm.define "ub" do |ub|
-  #     config.vm.box = "ubuntu/focal64"
-  #     #config.vm.box = "elkinaguas/ubuntu_data_analysis"
-  #     config.vm.synced_folder ".", "/home/vagrant/botenv"
-  #     config.vm.provider "virtualbox" do |vb|
-  #       vb.memory = 512
-  #       vb.cpus = 2
-  #       vb.gui = false
-  #     end
-  #     ub.vm.host_name = "ub"
-  #     ub.vm.network :forwarded_port, guest: 22, host: "2313", id: 'ssh'
-  #     ub.vm.network "private_network",
-  #                     ip: "192.168.11.3",
-  #                     virtualbox__intnet: "r1-tobj1"
-  #     ub.vm.provision "shell", 
-  #                     run: "always",
-  #                     inline: "apt-get install net-tools ; echo 'alias gwon=\"sudo route add default gw 192.168.1#{i}#{j}.1\"\nalias gwoff=\"sudo route del default gw 192.168.1#{i}#{j}.1\"' > .bash_aliases ;
-  #                     source ~/.bashrc ; route add default gw 192.168.1#{i}#{j}.1"
-  #   end
-  # end
 
   # Starts command & control server
   (1..1).each do |i|
     config.vm.define "cc" do |cc|
-      config.vm.box = "elkinaguas/tiny-object-20"
-      #config.vm.box = "elkinaguas/ubuntu_data_analysis"
-      config.vm.synced_folder ".", "/home/vagrant/botenv"
-      config.vm.provider "virtualbox" do |vb|
+      cc.vm.box = "elkinaguas/tiny-object-20"
+      cc.vm.synced_folder ".", "/home/vagrant/botenv"
+      cc.vm.provider "virtualbox" do |vb|
         vb.memory = 512
         vb.cpus = 2
         vb.gui = false
@@ -138,10 +115,9 @@ Vagrant.configure(2) do |config|
   # Starts loader server
   (1..1).each do |i|
     config.vm.define "loader" do |loader|
-      config.vm.box = "elkinaguas/tiny-object-20"
-      #config.vm.box = "elkinaguas/ubuntu_data_analysis"
-      config.vm.synced_folder ".", "/home/vagrant/botenv"
-      config.vm.provider "virtualbox" do |vb|
+      loader.vm.box = "elkinaguas/tiny-object-20"
+      loader.vm.synced_folder ".", "/home/vagrant/botenv"
+      loader.vm.provider "virtualbox" do |vb|
         vb.memory = 512
         vb.cpus = 2
         vb.gui = false
