@@ -13,4 +13,4 @@
 from botenv import cc
 
 cc1 = cc.cc("cc1")
-cc1.start_server(ip='192.168.11.4')
+cc1.start_server(ip='192.168.100.11')

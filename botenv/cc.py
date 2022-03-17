@@ -1,5 +1,5 @@
-#!/usr/bin/env python3 
-# -*- coding: utf-8 -*- 
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """
  Software Name : botenv
@@ -15,7 +15,7 @@
 
 import socket
 import threading
- 
+
 class cc:
     def __init__(self, name):
         self.name = name
@@ -30,7 +30,7 @@ class cc:
             if not data:
                 break
             connection.sendall(str.encode(reply))
-        
+
         connection.close()
 
     # Starts command & control server
@@ -59,11 +59,11 @@ class cc:
             ThreadCount = threading.active_count()
 
             print('Thread Number: ' + str(ThreadCount))
-        
+
         ServerSocket.close()
 
-def main(): 
-	pass 
-	
-if __name__ == "__main__": 
+def main():
+	pass
+
+if __name__ == "__main__":
 	main()

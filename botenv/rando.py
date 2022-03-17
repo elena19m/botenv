@@ -37,8 +37,8 @@ def ip(net_start = 0, net_end = 255, host_start = 0, host_end = 255):
 def seed_gen():
 	return np.random.seed(int(datetime.now().strftime("%d%H%f")))
 
-def main(): 
-	pass 
- 
-if __name__ == "__main__": 
+def main():
+	pass
+
+if __name__ == "__main__":
 	main()
