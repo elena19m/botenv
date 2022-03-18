@@ -150,7 +150,7 @@ class bot:
 				tn.read_until(b"Password: ", timeout=0.1)
 				tn.write((auth_entries[0][1] + '\n').encode('ascii'))
 				a = tn.read_until(b"\r\n", timeout=0.1)
-				#print(str(a))
+				print(str(a))
 				if a == b"\r\n":
 					print('login worked!')
 					return device, auth_entries[0]

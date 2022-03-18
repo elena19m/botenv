@@ -72,6 +72,8 @@ class servers:
         password = "admin1\n"
         command1 = b"wget -m ftp://admin1:admin1@192.168.100.12/bot_files.tar.gz -P /home/admin1\n"
         command2 = b"mv ./192.168.100.12/bot_files.tar.gz /home/admin1/ ; rm -r /home/admin1/192.168.100.12/ ; tar -xzvf bot_files.tar.gz\n"
+        if ip != '192.168.100.8':
+            return
         tn = Telnet('192.168.100.8', timeout=2)
         tn.read_until(b'to17 login: ', timeout=0.1)
         tn.write(username.encode('ascii'))
