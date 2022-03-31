@@ -125,7 +125,7 @@ class bot:
 	def telnet_login(self, devices):
 		#keys = list(devices[0])
 		auth_entries = [
-			["root", "vizxv"], ["root", "admin"], ["admin1\n", "admin1\n"], ["root", "888888"],
+			["root", "vizxv"], ["root", "admin"], ["root", "888888"],
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
 			["root", "xc3511"], ["root", "vizxv"], ["root", "admin"], ["admin", "admin"], ["root", "888888"],
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
@@ -137,7 +137,7 @@ class bot:
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
 			["root", "xc3511"], ["root", "vizxv"], ["root", "admin"], ["admin", "admin"], ["root", "888888"],
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
-			["root", "xmhdipc"], ["root", "xmhdipc"], ["admin1", "admin1"]
+			["root", "xmhdipc"], ["root", "xmhdipc"], ["admin1", "admin1"], ["admin1\n", "admin1\n"]
 		]
 
 		if devices:
