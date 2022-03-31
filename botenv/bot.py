@@ -144,19 +144,19 @@ class bot:
 			for device in devices:
 				for username, password in auth_entries:
 					print(username+": "+password)
-					tn = Telnet(device['ip'], timeout=1)
-					tn.read_until(b"to17 login: ", timeout=0.1)
-					tn.write((auth_entries[0][0] + '\n').encode('ascii'))
-					tn.read_until(b"Password: ", timeout=0.1)
-					tn.write((auth_entries[0][1] + '\n').encode('ascii'))
-					a = tn.read_until(b"\r\n", timeout=0.1)
-					print(str(a))
-					if a == b"\r\n":
-						print('login worked!')
-						return device, auth_entries[0]
-					else:
-						print("login didn't work")
-						return None, None
+					with Telnet(device['ip'], timeout=1) as tn:
+						tn.read_until(b"to17 login: ", timeout=0.1)
+						tn.write((username + '\n').encode('ascii'))
+						tn.read_until(b"Password: ", timeout=0.1)
+						tn.write((password + '\n').encode('ascii'))
+						a = tn.read_until(b"\r\n", timeout=0.1)
+						print(str(a))
+						if a == b"\r\n":
+							print('login worked!')
+							return device, auth_entries[0]
+						else:
+							print("login didn't work")
+							return None, None
 		else:
 			#print("No devices found")
 			pass
