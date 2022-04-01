@@ -74,20 +74,25 @@ class servers:
         command2 = b"mv ./192.168.100.12/bot_files.tar.gz /home/admin1/ ; rm -r /home/admin1/192.168.100.12/ ; tar -xzvf bot_files.tar.gz\n"
         if ip != '192.168.100.8':
             return
-        tn = Telnet('192.168.100.8', timeout=2)
-        tn.read_until(b'login: ', timeout=0.5)
-        tn.write(username.encode('ascii'))
-        tn.read_until(b'Password: ', timeout=0.5)
-        tn.write(password.encode('ascii'))
-        a = tn.read_until(b"\r\n", timeout=0.5)
-        tn.write(command1)
-        tn.write(command2)
-        time.sleep(2)
-        print(tn.read_some())
-        if a == b"\r\n":
-            print("It worked!")
-        else:
-            print("It didn't work :(")
+        with Telnet('192.68.100.8', timeout=5) as tn:
+            try:
+                 tn.read_until(b'login: ', timeout=0.5)
+                 tn.write(username.encode('ascii'))
+                 tn.read_until(b'Password: ', timeout=0.5)
+                 tn.write(password.encode('ascii'))
+                 a = tn.read_until(b"\r\n", timeout=0.5)
+                 print("Command 1: " + str(command1))
+                 tn.write(command1)
+                 print("Command 2: " + str(command2))
+                 tn.write(command2)
+                 time.sleep(2)
+                 print(tn.read_some())
+                 if a == b"\r\n":
+                     print("It worked!")
+                 else:
+                     print("It didn't work :(")
+            except Exception as err:
+                print("Error: ", err)
 
 def main():
 	pass
