@@ -159,7 +159,7 @@ class bot:
 							print("some: " + str(a))
 							if "incorrect" not in str(a):
 								print('login worked!')
-								return device, auth_entries[0]
+								return device, [username, password]
 							else:
 								print("login didn't work")
 						except Exception as err:
