@@ -74,7 +74,7 @@ class servers:
 		command2 = b"mv ./192.168.100.12/bot_files.tar.gz /home/admin1/ ; rm -r /home/admin1/192.168.100.12/ ; tar -xzvf bot_files.tar.gz\n"
 		if ip != '192.168.100.8':
 			return
-		with Telnet('192.68.100.8', timeout=5) as tn:
+		with Telnet('192.168.100.8', timeout=5) as tn:
 			try:
 				tn.read_until(b'login: ', timeout=0.5)
 				tn.write(username.encode('ascii'))
